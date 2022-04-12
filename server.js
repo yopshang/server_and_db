@@ -47,12 +47,11 @@ const requestListener = (req, res) => {
         res.write("取得資料");
         res.end()
     } else if (req.method == 'POST') {
-        console.log('post',)
         req.on('end', () => {
-            res.writeHead(200, headers);
-            res.write("post資料");
-            res.end()
-            // postdata(res, headers, '更新成功',body)
+            // res.writeHead(200, headers);
+            // res.write("post資料");
+            // res.end()
+            postdata(res, headers, '更新成功',body)
         })
     }
 
