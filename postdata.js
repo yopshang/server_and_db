@@ -1,26 +1,5 @@
 const mongoose = require('mongoose');
-
-
-// 建立 Schema
-const roomschema = new mongoose.Schema(
-    {
-        name: String,
-        price: {
-            type: Number,
-            default: 3000
-        },
-        rating: {
-            type: Number,
-            default: 4.0
-        }
-    },
-    {
-        versionKey: false,
-        collation: 'rooms'
-    }
-)
-// 建立 Model
-const user = mongoose.model('rooms', roomschema);
+const room = require('./models/room')
 
 function postdata(res, header, msg, body) {
     res.writeHead(200, header);
@@ -31,14 +10,11 @@ function postdata(res, header, msg, body) {
     try {
         mongoose.connect('mongodb://localhost:27017/hotel')
             .then(() => {
-                let user_data = new user(
-                        { 
-                            name: name,
-                            price: price,
-                            rating: rating
-                        }
-                    )
-                user_data.save()
+                room.create({ 
+                    name: name,
+                    price: price,
+                    rating: rating
+                })
             }).then(() => {
                 res.write('新增成功');
                 res.end();
