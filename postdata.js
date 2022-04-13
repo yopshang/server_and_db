@@ -15,13 +15,12 @@ const roomschema = new mongoose.Schema(
         }
     },
     {
-        versionKey: false
+        versionKey: false,
+        collation: 'rooms'
     }
 )
 // 建立 Model
 const user = mongoose.model('rooms', roomschema);
-
-
 
 function postdata(res, header, msg, body) {
     res.writeHead(200, header);

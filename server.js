@@ -4,20 +4,6 @@ const mongoose = require('mongoose');
 // const getdata = require('./getdata');
 const postdata = require('./postdata');
 
-// 建立 Schema
-const schema = {
-    name: String,
-    price: {
-        type: Number,
-        default: 3000,
-        require: [true, '價格必填']
-    },
-    rating: Number
-}
-
-// 建立 Model
-const Room = mongoose.model('Room', schema);
-
 const requestListener = (req, res) => {
     // 建立 headers
     const headers = {
@@ -41,7 +27,7 @@ const requestListener = (req, res) => {
             postdata(res, headers, '更新成功',body)
         })
     }else if(req.method == 'DELETE'){
-        
+
     }
 
 
