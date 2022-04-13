@@ -1,7 +1,7 @@
 const http = require('http');
 const mongoose = require('mongoose');
 
-const getdata = require('./getdata');
+// const getdata = require('./getdata');
 const postdata = require('./postdata');
 
 // 建立 Schema
@@ -17,16 +17,6 @@ const schema = {
 
 // 建立 Model
 const Room = mongoose.model('Room', schema);
-
-
-// 連線資料庫
-// mongoose.connect('mongodb://localhost:27017/hotel').then(() => {
-//     console.log('uauaua');
-// }).catch((err) => {
-//     console.log(err.reason);
-// });
-
-
 
 const requestListener = (req, res) => {
     // 建立 headers
@@ -48,11 +38,10 @@ const requestListener = (req, res) => {
         res.end()
     } else if (req.method == 'POST') {
         req.on('end', () => {
-            // res.writeHead(200, headers);
-            // res.write("post資料");
-            // res.end()
             postdata(res, headers, '更新成功',body)
         })
+    }else if(req.method == 'DELETE'){
+        
     }
 
 

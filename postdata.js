@@ -2,17 +2,22 @@ const mongoose = require('mongoose');
 
 
 // 建立 Schema
-const roomschema = {
-    name: String,
-    price: {
-        type: Number,
-        default: 3000
+const roomschema = new mongoose.Schema(
+    {
+        name: String,
+        price: {
+            type: Number,
+            default: 3000
+        },
+        rating: {
+            type: Number,
+            default: 4.0
+        }
     },
-    rating: {
-        type: Number,
-        default: 4.0
+    {
+        versionKey: false
     }
-}
+)
 // 建立 Model
 const user = mongoose.model('rooms', roomschema);
 
@@ -20,7 +25,6 @@ const user = mongoose.model('rooms', roomschema);
 
 function postdata(res, header, msg, body) {
     res.writeHead(200, header);
-    // console.log(res)
     console.log('更新資料庫');
     const name = JSON.parse(body).name;
     const price = JSON.parse(body).price;
@@ -38,10 +42,12 @@ function postdata(res, header, msg, body) {
                 user_data.save()
             }).then(() => {
                 res.write('新增成功');
+                res.end();
             })
     } catch (err) {
+        res.write(err);
         console.log(err);
+        res.end();
     }
-    res.end();
 }
 module.exports = postdata;
