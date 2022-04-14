@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 // 建立 Schema
 const roomschema = new mongoose.Schema(
     {

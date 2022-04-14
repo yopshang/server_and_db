@@ -1,4 +1,3 @@
-// const mongoose = require('mongoose');
 const Room = require('./models/room');
 
 async function getdata(res, headers) {
@@ -15,6 +14,5 @@ async function getdata(res, headers) {
         console.log(err);
         res.end()
     }
-    // res.end();
 }
 module.exports = getdata;
