@@ -1,10 +1,19 @@
 const http = require('http');
 const mongoose = require('mongoose');
 
-// const getdata = require('./getdata');
+const Room = require('./models/room');
+const getdata =  require('./getdata');
 const postdata = require('./postdata');
 
-const requestListener = (req, res) => {
+mongoose.connect('mongodb://localhost:27017/hotel')
+    .then(()=>{
+        console.log('資料庫連接成功');
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+const requestListener =  async (req, res) => {
     // 建立 headers
     const headers = {
         'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-Width',
@@ -17,11 +26,24 @@ const requestListener = (req, res) => {
         body += chunk;
     })
 
-    if (req.method == 'GET') {
-        // getdata(res, header, '成功');
-        res.writeHead(200, headers);
-        res.write("取得資料");
-        res.end()
+    if (req.url == '/rooms' && req.method == 'GET') {
+        console.log('good one');
+        // getdata(res, headers);
+        // try {
+            console.log('good two');
+            const rooms = await Room.find({});
+            console.log('good 3');
+            res.writeHead(200, headers);
+            res.write(JSON.stringify({
+                "status": "success",
+                rooms
+            }));
+            res.end()
+        // } catch (err) {
+        //     res.writeHead(200, headers);
+        //     console.log(err);
+        //     res.end()
+        // }
     } else if (req.method == 'POST') {
         req.on('end', () => {
             postdata(res, headers, '更新成功',body)

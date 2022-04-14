@@ -16,9 +16,8 @@ const roomschema = new mongoose.Schema(
     },
     {
         versionKey: false,
-        collation: 'rooms'
     }
 )
 // 建立 Model
-const room = mongoose.model('rooms', roomschema);
-module.exports = room;
+const Room = mongoose.model('Room', roomschema);
+module.exports = Room;

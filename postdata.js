@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const room = require('./models/room')
+const Room = require('./models/room')
 
 function postdata(res, header, msg, body) {
     res.writeHead(200, header);
@@ -10,7 +10,7 @@ function postdata(res, header, msg, body) {
     try {
         mongoose.connect('mongodb://localhost:27017/hotel')
             .then(() => {
-                room.create({ 
+                Room.create({ 
                     name: name,
                     price: price,
                     rating: rating

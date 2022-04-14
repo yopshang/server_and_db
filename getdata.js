@@ -1,37 +1,21 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+const Rooms = require('./models/room');
 
-
-// 建立 Schema
-// const roomschema = {
-//   name: String,
-//   price: {
-//     type: Number,
-//     default: 3000
-//   },
-//   rating: {
-//     type: Number,
-//     default: 4.0
-//   }
-// }
-// // 建立 Model
-// const user = mongoose.model('rooms', roomschema);
-
-
-
-function getdata(res ,header, msg, body){
-  res.writeHead(200, header);
-  const title = JSON.parse(body).title;
-  try{
-    mongoose.connect('mongodb://localhost:27017/hotel')
-      .then(() => {
-        // let user_data = new user({name:title})
-        // user_data.save()
-      }).then(()=>{
-        res.write('新增成功');
-      })
-  }catch(err){
-    console.log(err);
-  }
-  res.end();
+async function getdata(res, headers) {
+    try {
+        console.log('good');
+        const rooms_data = await Rooms.find();
+        res.writeHead(200, headers);
+        res.write(JSON.stringify({
+            "status": "success",
+            rooms_data
+        }));
+        res.end()
+    } catch (err) {
+        res.writeHead(200, headers);
+        console.log(err);
+        res.end()
+    }
+    // res.end();
 }
 module.exports = getdata;
