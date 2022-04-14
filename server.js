@@ -27,23 +27,7 @@ const requestListener =  async (req, res) => {
     })
 
     if (req.url == '/rooms' && req.method == 'GET') {
-        console.log('good one');
-        // getdata(res, headers);
-        // try {
-            console.log('good two');
-            const rooms = await Room.find({});
-            console.log('good 3');
-            res.writeHead(200, headers);
-            res.write(JSON.stringify({
-                "status": "success",
-                rooms
-            }));
-            res.end()
-        // } catch (err) {
-        //     res.writeHead(200, headers);
-        //     console.log(err);
-        //     res.end()
-        // }
+        getdata(res, headers);
     } else if (req.method == 'POST') {
         req.on('end', () => {
             postdata(res, headers, '更新成功',body)

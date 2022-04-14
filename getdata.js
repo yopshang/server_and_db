@@ -1,14 +1,13 @@
 // const mongoose = require('mongoose');
-const Rooms = require('./models/room');
+const Room = require('./models/room');
 
 async function getdata(res, headers) {
     try {
-        console.log('good');
-        const rooms_data = await Rooms.find();
+        const rooms = await Room.find({});
         res.writeHead(200, headers);
         res.write(JSON.stringify({
             "status": "success",
-            rooms_data
+            rooms
         }));
         res.end()
     } catch (err) {
