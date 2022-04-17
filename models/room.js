@@ -6,11 +6,12 @@ const roomschema = new mongoose.Schema(
         name: String,
         price: {
             type: Number,
-            default: 3000
+            default: 3000,
+            required: true
         },
         rating: {
             type: Number,
-            default: 4.0
+            default: 4.0,
         }
     },
     {

@@ -1,11 +1,20 @@
 const http = require('http');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const Room = require('./models/room');
 const getdata =  require('./getdata');
 const postdata = require('./postdata');
 
-mongoose.connect('mongodb://localhost:27017/hotel')
+dotenv.config({path:"./config.env"})
+const dburl = process.env.DBURL;
+const db_varified = dburl.replace(
+    '<password>', process.env.DBPASSWORD
+    )
+console.log(dburl, db_varified)
+
+// mongoose.connect('mongodb://localhost:27017/hotel')
+mongoose.connect(db_varified)
     .then(()=>{
         console.log('資料庫連接成功');
     })
@@ -28,11 +37,11 @@ const requestListener =  async (req, res) => {
 
     if (req.url == '/rooms' && req.method == 'GET') {
         getdata(res, headers);
-    } else if (req.method == 'POST') {
+    } else if ( req.url =='/rooms' && req.method == 'POST') {
         req.on('end', () => {
             postdata(res, headers, '更新成功',body)
         })
-    }else if(req.method == 'DELETE'){
+    }else if(req.url =='/rooms' && req.method == 'DELETE'){
 
     }
 
