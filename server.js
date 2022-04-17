@@ -11,7 +11,6 @@ const dburl = process.env.DBURL;
 const db_varified = dburl.replace(
     '<password>', process.env.DBPASSWORD
     )
-console.log(dburl, db_varified)
 
 // mongoose.connect('mongodb://localhost:27017/hotel')
 mongoose.connect(db_varified)
