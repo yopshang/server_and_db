@@ -2,7 +2,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const Room = require('./models/room');
+const Post = require('./models/room');
 const getdata =  require('./getdata');
 const postdata = require('./postdata');
 
@@ -12,8 +12,8 @@ const db_varified = dburl.replace(
     '<password>', process.env.DBPASSWORD
     )
 
-// mongoose.connect('mongodb://localhost:27017/hotel')
-mongoose.connect(db_varified)
+mongoose.connect('mongodb://localhost:27017/IG')
+// mongoose.connect(db_varified)
     .then(()=>{
         console.log('資料庫連接成功');
     })
@@ -30,8 +30,9 @@ const requestListener =  async (req, res) => {
         'Contnet-Type': 'application/json'
     }
     let body = "";
-    req.on('data', chunk => {
-        body += chunk;
+    
+    req.on('data', chunk=>{
+        body+=chunk;
     })
 
     if (req.url == '/rooms' && req.method == 'GET') {
@@ -40,8 +41,17 @@ const requestListener =  async (req, res) => {
         req.on('end', () => {
             postdata(res, headers, '更新成功',body)
         })
-    }else if(req.url =='/rooms' && req.method == 'DELETE'){
-
+    }else if(req.url.startsWith('/rooms/') && req.method == 'DELETE'){
+        const id = req.url.split('/').pop();
+        console.log(id);
+        await Post.findByIdAndDelete(id);
+        console.log('刪除')
+        res.writeHead(200, headers);
+        res.write(JSON.stringify({
+            "status": "success",
+            "data": null
+        }))
+        res.end();
     }
 
 

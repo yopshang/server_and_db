@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
 
 // 建立 Schema
-const roomschema = new mongoose.Schema(
+const postschema = new mongoose.Schema(
     {
         name: String,
         price: {
             type: Number,
-            default: 3000,
-            required: true
         },
         rating: {
             type: Number,
-            default: 4.0,
         }
     },
     {
@@ -19,5 +16,5 @@ const roomschema = new mongoose.Schema(
     }
 )
 // 建立 Model
-const Room = mongoose.model('Room', roomschema);
-module.exports = Room;
+const Post = mongoose.model('Post', postschema);
+module.exports = Post;
