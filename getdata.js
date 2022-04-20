@@ -1,8 +1,9 @@
-const Room = require('./models/room');
+// const Room = require('./models/room');
+const Post = require('./models/post');
 
 async function getdata(res, headers) {
     try {
-        const rooms = await Room.find({});
+        const rooms = await Post.find({});
         res.writeHead(200, headers);
         res.write(JSON.stringify({
             "status": "success",

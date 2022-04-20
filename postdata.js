@@ -1,4 +1,5 @@
-const Room = require('./models/room')
+// const Room = require('./models/room')
+const Post = require('./models/post');
 
 function postdata(res, header, msg, body) {
     console.log('更新資料庫');
@@ -7,12 +8,16 @@ function postdata(res, header, msg, body) {
     const rating = JSON.parse(body).rating;
     try {
         res.writeHead(200, header);
-        Room.create({ 
-            name: name,
-            price: price,
-            rating: rating
+        Post.create({ 
+            name,
+            tages,
+            type,
+            image,
+            content,
+            likes,
+            comments
         }).then(() => {
-            res.write('新增成功');
+            res.write('新增成功'); 
             res.end();
         })
     } catch (err) {

@@ -1,8 +1,11 @@
 const http = require('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const express = require('express');
+const app = express();
 
-const Post = require('./models/room');
+const Room = require('./models/room')
+const Post = require('./models/post');
 const getdata =  require('./getdata');
 const postdata = require('./postdata');
 
@@ -21,14 +24,14 @@ mongoose.connect('mongodb://localhost:27017/IG')
         console.log(err);
     })
 
-const requestListener =  async (req, res) => {
-    // 建立 headers
     const headers = {
         'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-Width',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'PATH, POST, GET, OPTIONS, DELETE',
         'Contnet-Type': 'application/json'
     }
+const requestListener =  async (req, res) => {
+    // 建立 headers
     let body = "";
     
     req.on('data', chunk=>{
@@ -56,5 +59,12 @@ const requestListener =  async (req, res) => {
 
 
 }
-const server = http.createServer(requestListener)
-server.listen(process.env.PORT || 3005)
+// const server = http.createServer(requestListener)
+// server.listen(process.env.PORT || 3005)
+
+app.get('/posts', (req, res) => {
+    getdata(res, headers);
+    // res.send('get post!');
+})
+
+app.listen(process.env.PORT || 3005)

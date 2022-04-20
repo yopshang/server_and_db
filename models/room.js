@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // 建立 Schema
-const postschema = new mongoose.Schema(
+const roomschema = new mongoose.Schema(
     {
         name: String,
         price: {
@@ -16,5 +16,5 @@ const postschema = new mongoose.Schema(
     }
 )
 // 建立 Model
-const Post = mongoose.model('Post', postschema);
-module.exports = Post;
+const Room = mongoose.model('Room', roomschema);
+module.exports = Room;
