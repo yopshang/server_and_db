@@ -1,19 +1,15 @@
-// const Room = require('./models/room');
 const Post = require('./models/post');
 
 async function getdata(res, headers) {
     try {
         const post = await Post.find({});
-        res.writeHead(200, headers);
-        res.write(JSON.stringify({
+        res.send(JSON.stringify({
             "status": "success",
             post
         }));
-        res.end()
     } catch (err) {
-        res.writeHead(200, headers);
         console.log(err);
-        res.end()
+        res.send('資料取得錯誤');
     }
 }
 module.exports = getdata;

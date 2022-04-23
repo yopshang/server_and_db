@@ -60,21 +60,26 @@ const requestListener =  async (req, res) => {
 
 }
 
-
-app.get('/posts', (req, res) => {
-    getdata(res, headers);
-    // res.send('get post!');
-})
-app.post('/posts', async (req, res) => {
+async function returnBody(req){
     let body = "";
 
     await req.on('data', chunk=>{
         body+=chunk;
     })
+    return body;
+}
 
+
+app.get('/posts', (req, res) => {
+    getdata(res, headers);
+})
+app.post('/posts', async (req, res) => {
+    let body = await returnBody(req);;
     postdata(res, headers, '更新成功',body);
 })
+app.delete('/posts', async (req, res) => {
 
+})
 
 
 app.listen(process.env.PORT || 3005)
