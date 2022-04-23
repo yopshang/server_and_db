@@ -62,9 +62,22 @@ const requestListener =  async (req, res) => {
 // const server = http.createServer(requestListener)
 // server.listen(process.env.PORT || 3005)
 
+
+
 app.get('/posts', (req, res) => {
     getdata(res, headers);
     // res.send('get post!');
 })
+app.post('/posts', async (req, res) => {
+    let body = "";
+
+    await req.on('data', chunk=>{
+        body+=chunk;
+    })
+
+    postdata(res, headers, '更新成功',body);
+})
+
+
 
 app.listen(process.env.PORT || 3005)

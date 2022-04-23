@@ -5,7 +5,7 @@ const postschema = new mongoose.Schema(
     {
         name: String,
         tags: {
-            type: String,
+            type: Array,
         },
         type: {
             type: String,

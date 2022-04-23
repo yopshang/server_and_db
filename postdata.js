@@ -4,13 +4,17 @@ const Post = require('./models/post');
 function postdata(res, header, msg, body) {
     console.log('更新資料庫');
     const name = JSON.parse(body).name;
-    const price = JSON.parse(body).price;
-    const rating = JSON.parse(body).rating;
+    const tags = JSON.parse(body).tags;
+    const type = JSON.parse(body).type;
+    const image = JSON.parse(body).image;
+    const content = JSON.parse(body).content;
+    const likes = JSON.parse(body).likes;
+    const comments = JSON.parse(body).comments;
     try {
         res.writeHead(200, header);
         Post.create({ 
             name,
-            tages,
+            tags,
             type,
             image,
             content,
