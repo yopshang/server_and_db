@@ -3,11 +3,11 @@ const Post = require('./models/post');
 
 async function getdata(res, headers) {
     try {
-        const rooms = await Post.find({});
+        const post = await Post.find({});
         res.writeHead(200, headers);
         res.write(JSON.stringify({
             "status": "success",
-            rooms
+            post
         }));
         res.end()
     } catch (err) {
