@@ -1,6 +1,6 @@
 const Post = require('./models/post');
 
-function postdata(res, header, msg, body) {
+function postdata(res, body) {
     const name = JSON.parse(body).name;
     const tags = JSON.parse(body).tags;
     const type = JSON.parse(body).type;

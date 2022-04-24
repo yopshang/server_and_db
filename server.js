@@ -1,10 +1,8 @@
-// const http = require('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
 
-// const Post = require('./models/post');
 const getdata =  require('./getdata');
 const postdata = require('./postdata');
 const deletedata = require('./deletedata');
@@ -76,7 +74,7 @@ app.get('/posts', (req, res) => {
 })
 app.post('/posts', async (req, res) => {
     let body = await returnBody(req);
-    postdata(res, headers, '更新成功',body);
+    postdata(res,body);
 })
 app.delete('/posts/:id', async (req, res) => {
     deletedata(req, res);
