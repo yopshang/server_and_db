@@ -17,4 +17,22 @@ async function deletedata(req, res) {
         });
     }
 }
-module.exports = deletedata;
+
+async function deleteAllData(req, res) {
+    try {
+        await Post.deleteMany({});
+        console.log('刪除全部')
+        res.send(JSON.stringify({
+            "status": "success",
+            "data": null
+        }))
+    } catch (err) {
+        res.send({
+            "status": "false",
+            "message": "欄位不正確或沒有此ID",
+            "error": JSON.stringify(err)
+        });
+    }
+}
+
+module.exports = {deletedata, deleteAllData};

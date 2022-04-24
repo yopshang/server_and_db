@@ -5,7 +5,7 @@ const app = express();
 
 const getdata =  require('./getdata');
 const postdata = require('./postdata');
-const deletedata = require('./deletedata');
+const {deletedata, deleteAllData} = require('./deletedata');
 
 
 dotenv.config({path:"./config.env"})
@@ -78,6 +78,9 @@ app.post('/posts', async (req, res) => {
 })
 app.delete('/posts/:id', async (req, res) => {
     deletedata(req, res);
+})
+app.delete('/posts', async (req, res) => {
+    deleteAllData(req, res);
 })
 
 
