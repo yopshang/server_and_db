@@ -1,7 +1,7 @@
 const Post = require('./models/post');
 
 function returnSet(body_obj){
-    let result;
+    let result={}
     if(body_obj.name){
         result.name = body_obj.name;
     }
@@ -34,12 +34,12 @@ async function patchdata (req, res , body){
             "id": `ObjectId('${id}')`
         },{
             $set:{
-                "name" : body_obj.name,
-                "type" : body_obj.type,
-                "image" : body_obj.image,
-                "content" : body_obj.content,
-                "likes" : body_obj.likes,
-                "comments" : body_obj.comments
+                name : body_obj.name,
+                type : body_obj.type,
+                image : body_obj.image,
+                content : body_obj.content,
+                likes : body_obj.likes,
+                comments : body_obj.comments
             }
         })
         res.send("更新成功");
