@@ -1,13 +1,14 @@
-const http = require('http');
+// const http = require('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
 
-const Room = require('./models/room')
-const Post = require('./models/post');
+// const Post = require('./models/post');
 const getdata =  require('./getdata');
 const postdata = require('./postdata');
+const deletedata = require('./deletedata');
+
 
 dotenv.config({path:"./config.env"})
 const dburl = process.env.DBURL;
@@ -74,11 +75,11 @@ app.get('/posts', (req, res) => {
     getdata(res, headers);
 })
 app.post('/posts', async (req, res) => {
-    let body = await returnBody(req);;
+    let body = await returnBody(req);
     postdata(res, headers, '更新成功',body);
 })
-app.delete('/posts', async (req, res) => {
-
+app.delete('/posts/:id', async (req, res) => {
+    deletedata(req, res);
 })
 
 
