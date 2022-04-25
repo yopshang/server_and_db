@@ -30,35 +30,35 @@ mongoose.connect('mongodb://localhost:27017/IG')
         'Access-Control-Allow-Methods': 'PATH, POST, GET, OPTIONS, DELETE',
         'Contnet-Type': 'application/json'
     }
-const requestListener =  async (req, res) => {
-    // 建立 headers
-    let body = "";
+// const requestListener =  async (req, res) => {
+//     // 建立 headers
+//     let body = "";
     
-    req.on('data', chunk=>{
-        body+=chunk;
-    })
+//     req.on('data', chunk=>{
+//         body+=chunk;
+//     })
 
-    if (req.url == '/rooms' && req.method == 'GET') {
-        getdata(res, headers);
-    } else if ( req.url =='/rooms' && req.method == 'POST') {
-        req.on('end', () => {
-            postdata(res, headers, '更新成功',body)
-        })
-    }else if(req.url.startsWith('/rooms/') && req.method == 'DELETE'){
-        const id = req.url.split('/').pop();
-        console.log(id);
-        await Post.findByIdAndDelete(id);
-        console.log('刪除')
-        res.writeHead(200, headers);
-        res.write(JSON.stringify({
-            "status": "success",
-            "data": null
-        }))
-        res.end();
-    }
+//     if (req.url == '/rooms' && req.method == 'GET') {
+//         getdata(res, headers);
+//     } else if ( req.url =='/rooms' && req.method == 'POST') {
+//         req.on('end', () => {
+//             postdata(res, headers, '更新成功',body)
+//         })
+//     }else if(req.url.startsWith('/rooms/') && req.method == 'DELETE'){
+//         const id = req.url.split('/').pop();
+//         console.log(id);
+//         await Post.findByIdAndDelete(id);
+//         console.log('刪除')
+//         res.writeHead(200, headers);
+//         res.write(JSON.stringify({
+//             "status": "success",
+//             "data": null
+//         }))
+//         res.end();
+//     }
 
 
-}
+// }
 
 async function returnBody(req){
     let body = "";
@@ -83,9 +83,8 @@ app.delete('/posts/:id', async (req, res) => {
 app.delete('/posts', async (req, res) => {
     deleteAllData(req, res);
 })
-app.patch('/posts/:id', async(req,res) => {
-    let body = await returnBody(req);
-    patchdata(req, res, body);
+app.options('/posts', async(req,res) => {
+    res.status(200).json({'status': 'success'})
 })
 
 

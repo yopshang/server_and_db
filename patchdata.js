@@ -22,9 +22,6 @@ function returnSet(body_obj){
     }
     return result;
 }
-async function checkIfIdExist(){
-
-}
 
 async function patchdata (req, res , body){
     try{
