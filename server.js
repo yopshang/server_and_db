@@ -24,12 +24,12 @@ mongoose.connect('mongodb://localhost:27017/IG')
         console.log(err);
     })
 
-    const headers = {
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-Width',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'PATH, POST, GET, OPTIONS, DELETE',
-        'Contnet-Type': 'application/json'
-    }
+        // const headers = {
+        //     'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-Width',
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Access-Control-Allow-Methods': 'PATH, POST, GET, OPTIONS, DELETE',
+        //     'Contnet-Type': 'application/json'
+        // }
 // const requestListener =  async (req, res) => {
 //     // 建立 headers
 //     let body = "";
@@ -71,7 +71,7 @@ async function returnBody(req){
 
 
 app.get('/posts', (req, res) => {
-    getdata(res, headers);
+    getdata(res);
 })
 app.post('/posts', async (req, res) => {
     let body = await returnBody(req);
@@ -84,16 +84,10 @@ app.delete('/posts', async (req, res) => {
     deleteAllData(req, res);
 })
 app.patch('/posts/:id', async (req, res) => {
-    // req.on('end', function(){
-        const id = req.params.id;
-        const body = await returnBody(req);
-        patchdata(res, id , body);
-        
-    // })
-
-    
-
-    })
+    const id = req.params.id;
+    const body = await returnBody(req);
+    patchdata(res, id , body);
+})
 app.options('/posts', async(req,res) => {
     res.status(200).json({'status': 'success'})
 })
