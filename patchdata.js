@@ -20,26 +20,32 @@ function returnSet(body_obj){
     if(body_obj.comments){
         result.comments = body_obj.comments;
     }
+    if(body_obj.tags){
+        result.tags = body_obj.tags;
+    }
     return result;
 }
 
-async function patchdata (req, res , body){
+async function patchdata (res, id , body){
     try{
-        let body_obj = JSON.parse(body);
-        const id = req.params.id;
-        await Post.updateOne({
-            "id": `ObjectId('${id}')`
-        },{
-            $set:{
-                name : body_obj.name,
-                type : body_obj.type,
-                image : body_obj.image,
-                content : body_obj.content,
-                likes : body_obj.likes,
-                comments : body_obj.comments
-            }
-        })
-        res.send("更新成功");
+        if(!body){
+            console.log('body', body);
+            res.status.send("資料遺失");
+        } else if(!id){
+            res.send("無此id")
+        } else {
+            const body_obj = JSON.parse(body);
+            // console.log(id, body_obj)
+            await Post.updateOne(
+                {
+                    _id: id
+                },
+                {
+                    $set: returnSet(body_obj)
+                }
+            )
+            res.status(200).send("更新成功");
+        }
 
     }catch(err){
         res.send({

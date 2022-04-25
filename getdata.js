@@ -1,9 +1,9 @@
 const Post = require('./models/post');
 
-async function getdata(res, headers) {
+async function getdata(res) {
     try {
         const post = await Post.find({});
-        res.send(JSON.stringify({
+        res.status(200).send(JSON.stringify({
             "status": "success",
             post
         }));
