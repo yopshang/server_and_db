@@ -15,8 +15,8 @@ const db_varified = dburl.replace(
     '<password>', process.env.DBPASSWORD
     )
 
-mongoose.connect('mongodb://localhost:27017/IG')
-// mongoose.connect(db_varified)
+// mongoose.connect('mongodb://localhost:27017/IG')
+mongoose.connect(db_varified)
     .then(()=>{
         console.log('資料庫連接成功');
     })
