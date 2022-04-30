@@ -30,12 +30,11 @@ async function patchdata (res, id , body){
     try{
         if(!body){
             console.log('body', body);
-            res.status.send("資料遺失");
+            res.status.json("資料遺失");
         } else if(!id){
-            res.send("無此id")
+            res.json("無此id")
         } else {
             const body_obj = JSON.parse(body);
-            // console.log(id, body_obj)
             await Post.updateOne(
                 {
                     _id: id
@@ -44,14 +43,14 @@ async function patchdata (res, id , body){
                     $set: returnSet(body_obj)
                 }
             )
-            res.status(200).send("更新成功");
+            res.status(200).json("更新成功");
         }
 
     }catch(err){
-        res.send({
+        res.json({
             "status": "false",
             "message": "欄位不正確或沒有此ID",
-            "error": err
+            "error": JSON.stringify(err)
         });
     }
 }

@@ -18,10 +18,10 @@ function postdata(res, body) {
             likes,
             comments
         }).then(() => {
-            res.send('新增成功'); 
+            res.json('新增成功'); 
         })
     } catch (err) {
-        res.send({
+        res.json({
             "status": "false",
             "message": "欄位不正確或沒有此ID",
             "error": err
