@@ -17,11 +17,10 @@ async function returnBody(req){
 }
 
 router.get('/', (req, res) => {
-    getdata(res);
+    getdata(req, res);
 })
 router.post('/', async (req, res) => {
-    let body = await returnBody(req);
-    postdata(res,body);
+    postdata(req, res);
 })
 router.delete('/:id', async (req, res) => {
     deletedata(req, res);
