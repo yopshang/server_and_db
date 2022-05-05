@@ -17,7 +17,7 @@ async function returnBody(req){
 }
 
 router.get('/', (req, res) => {
-    getdata(req, res);
+    getdata(res);
 })
 router.post('/', async (req, res) => {
     postdata(req, res);
@@ -31,7 +31,7 @@ router.delete('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     const id = req.params.id;
     const body = await returnBody(req);
-    patchdata(res, id , body);
+    patchdata(res, id , req);
 })
 router.options('/', async(req,res) => {
     res.status(200).json({'status': 'success'})
