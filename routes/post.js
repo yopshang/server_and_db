@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     deletedata(req, res);
 })
-router.delete('', async (req, res) => {
+router.delete('/', async (req, res) => {
     deleteAllData(req, res);
 })
 router.patch('/:id', async (req, res) => {
