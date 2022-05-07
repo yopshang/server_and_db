@@ -1,46 +1,44 @@
 const Post = require('./models/post');
 
-function returnSet(body_obj){
+function returnSet(body){
     let result={}
-    if(body_obj.name){
-        result.name = body_obj.name;
+    if(body.name){
+        result.name = body.name;
     }
-    if(body_obj.type) {
-        result.type = body_obj.type;
+    if(body.type) {
+        result.type = body.type;
     }
-    if(body_obj.image){
-        result.image = body_obj.image;
+    if(body.image){
+        result.image = body.image;
     }
-    if(body_obj.content){
-        result.content = body_obj.content;
+    if(body.content){
+        result.content = body.content;
     }
-    if(body_obj.likes){
-        result.likes = body_obj.likes;
+    if(body.likes){
+        result.likes = body.likes;
     }
-    if(body_obj.comments){
-        result.comments = body_obj.comments;
+    if(body.comments){
+        result.comments = body.comments;
     }
-    if(body_obj.tags){
-        result.tags = body_obj.tags;
+    if(body.tags){
+        result.tags = body.tags;
     }
     return result;
 }
 
-async function patchdata (res, id , body){
+async function patchdata (req, res, id){
     try{
-        if(!body){
-            console.log('body', body);
+        if(!req.body){
             res.status.json("資料遺失");
         } else if(!id){
             res.json("無此id")
         } else {
-            const body_obj = JSON.parse(body);
             await Post.updateOne(
                 {
                     _id: id
                 },
                 {
-                    $set: returnSet(body_obj)
+                    $set: returnSet(req.body)
                 }
             )
             res.status(200).json("更新成功");

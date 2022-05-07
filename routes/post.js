@@ -30,8 +30,7 @@ router.delete('/', async (req, res) => {
 })
 router.patch('/:id', async (req, res) => {
     const id = req.params.id;
-    const body = await returnBody(req);
-    patchdata(res, id , req);
+    patchdata(req, res, id );
 })
 router.options('/', async(req,res) => {
     res.status(200).json({'status': 'success'})
