@@ -1,13 +1,14 @@
 const Post = require('./models/post');
 
 async function postdata(req, res) {
-    const name = req.name;
-    const tags = req.tags;
-    const type = req.type;
-    const image = req.image;
-    const content = req.content;
-    const likes = req.likes;
-    const comments = req.comments;
+    const body = req.body;
+    const name = body.name;
+    const tags = body.tags;
+    const type = body.type;
+    const image = body.image;
+    const content = body.content;
+    const likes = body.likes;
+    const comments = body.comments;
     try {
         Post.create({ 
             name,

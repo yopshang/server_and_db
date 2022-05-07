@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
+var bodyParser = require('body-parser')
 
 const post = require('./routes/post')
 
@@ -20,6 +21,7 @@ mongoose.connect(db_varified)
         console.log(err);
     })
 
-
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 app.use('/posts', post)
 app.listen(process.env.PORT || 3005)
