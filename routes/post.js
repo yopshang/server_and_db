@@ -7,15 +7,6 @@ const postdata = require('../postdata');
 const {deletedata, deleteAllData} = require('../deletedata');
 const patchdata = require('../patchdata');
 
-async function returnBody(req){
-    let body = "";
-
-    await req.on('data', chunk=>{
-        body+=chunk;
-    })
-    return body;
-}
-
 router.get('/', (req, res) => {
     getdata(res);
 })
