@@ -19,7 +19,7 @@ async function postdata(req, res) {
             likes,
             comments
         }).then(() => {
-            res.json('新增成功'); 
+            res.json({status: '新增成功'}); 
         })
     } catch (err) {
         res.json({

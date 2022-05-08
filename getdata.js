@@ -9,7 +9,7 @@ async function getdata(res) {
         });
     } catch (err) {
         console.log(err);
-        res.json('資料取得錯誤');
+        res.json({status: '資料取得錯誤'});
     }
 }
 module.exports = getdata;

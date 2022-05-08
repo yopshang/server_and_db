@@ -29,7 +29,7 @@ function returnSet(body){
 async function patchdata (req, res, id){
     try{
         if(!req.body){
-            res.status.json("資料遺失");
+            res.status.json({status:"資料遺失"});
         } else if(!id){
             res.json("無此id")
         } else {
@@ -41,7 +41,7 @@ async function patchdata (req, res, id){
                     $set: returnSet(req.body)
                 }
             )
-            res.status(200).json("更新成功");
+            res.status(200).json({status: "更新成功"});
         }
 
     }catch(err){
