@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "548446ef-a404-4b4d-a51c-cc11a7b5c732",
+		"name": "server_and_db heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://arcane-basin-95503.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"arcane-basin-95503",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"999\",\n    \"tags\": [\"迷因\", \"電影\"],\n    \"type\": \"group\",\n    \"image\": \"https://imgtest\",\n    \"likes\": 666,\n    \"comments\": 8787\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://arcane-basin-95503.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"arcane-basin-95503",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://arcane-basin-95503.herokuapp.com/posts/",
+					"protocol": "https",
+					"host": [
+						"arcane-basin-95503",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://arcane-basin-95503.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"arcane-basin-95503",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"3345\",\n    \"tags\": [\"迷因\", \"電影\"],\n    \"type\": \"group\",\n    \"image\": \"https://imgtest\",\n    \"likes\": 555,\n    \"comments\": 8787,\n    \"contents\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://arcane-basin-95503.herokuapp.com/62655a3daa15629de98e5e6a",
+					"protocol": "https",
+					"host": [
+						"arcane-basin-95503",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"62655a3daa15629de98e5e6a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
