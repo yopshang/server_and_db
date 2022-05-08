@@ -1,4 +1,5 @@
-const Post = require('./models/post');
+const Post = require('../models/post.js');
+
 
 async function getdata(res) {
     try {

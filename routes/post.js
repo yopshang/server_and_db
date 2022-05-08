@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 
-const getdata =  require('../getdata');
-const postdata = require('../postdata');
-const {deletedata, deleteAllData} = require('../deletedata');
-const patchdata = require('../patchdata');
+const getdata =  require('../controllers/getdata');
+const postdata = require('../controllers/postdata');
+const {deletedata, deleteAllData} = require('../controllers/deletedata');
+const patchdata = require('../controllers/patchdata');
 
 router.get('/', (req, res) => {
     getdata(res);
